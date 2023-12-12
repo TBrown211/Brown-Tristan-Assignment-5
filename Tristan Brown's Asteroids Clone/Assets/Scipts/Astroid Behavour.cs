@@ -13,8 +13,12 @@ public class AstroidBehavour : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+            SplitAsteroid();
     }
 
+    void SplitAsteroid()
+    {
 
+    }
 }
