@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MoveShip : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class MoveShip : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("asteroid"))
             return;
-        Destroy(gameObject);
+        ResetGame();
     }
 
     void FixedUpdate()
@@ -56,5 +57,10 @@ public class MoveShip : MonoBehaviour
 
             Destroy(newBullet, timeUntillBulletIsDestoryed);
         }
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
