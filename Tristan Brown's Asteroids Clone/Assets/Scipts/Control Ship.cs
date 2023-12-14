@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class MoveShip : MonoBehaviour
 {
+    public GameObject bullet;
+    public float bulletForce = 10f;
+    public float timeUntillBulletIsDestoryed = 20f;
 
     void Start()
     {
         Debug.Log(name);
     }
 
-
-    void Update()
+    void FixedUpdate()
     {
         // Get the players input for controling the ship
         bool thrustShipForward = Input.GetKey(KeyCode.W);
         bool turnShipLeft = Input.GetKey(KeyCode.A); //CCW
         bool turnShipRight = Input.GetKey(KeyCode.D); //CW
-        bool shipShootBullets = Input.GetKeyDown(KeyCode.Space);
-
         float shipRotation = 0;
 
 
@@ -32,5 +32,15 @@ public class MoveShip : MonoBehaviour
             shipRotation -= 90 * Time.deltaTime;
 
         transform.rotation = Quaternion.Euler(0,0, transform.rotation.eulerAngles.z + shipRotation);
+    }
+
+    private void Update()
+    {
+        bool shipShootBullets = Input.GetKeyDown(KeyCode.Space);
+         if (shipShootBullets)
+        {
+            Vector3 position = transform.position + transform.up;
+            GameObject newBullet = Instantiate(bullet, position, Quaternion.identity);
+        }
     }
 }
