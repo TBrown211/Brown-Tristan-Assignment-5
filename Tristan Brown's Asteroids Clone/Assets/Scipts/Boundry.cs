@@ -9,6 +9,7 @@ public class Boundry : MonoBehaviour
     {
         if (!collider2D.CompareTag("asteroid"))
             return; 
+        Vector3 hasWarped = collider2D.transform.position + Warp;
         collider2D.attachedRigidbody.MovePosition(Warp);
     }
 }
