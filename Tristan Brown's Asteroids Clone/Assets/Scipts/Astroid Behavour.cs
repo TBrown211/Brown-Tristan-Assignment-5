@@ -20,8 +20,16 @@ public class AstroidBehavour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            SplitAsteroid();
+      
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("bullet"))
+            return;
+
+        SplitAsteroid();
+        Destroy(collision.gameObject);
     }
 
     void SplitAsteroid()

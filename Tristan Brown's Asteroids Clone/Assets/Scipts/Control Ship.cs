@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveShip : MonoBehaviour
 {
+    new public Rigidbody2D rigidbody2D;
     public GameObject bullet;
     public float bulletForce = 10f;
     public float timeUntillBulletIsDestoryed = 20f;
@@ -34,13 +35,16 @@ public class MoveShip : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,0, transform.rotation.eulerAngles.z + shipRotation);
     }
 
-    private void Update()
+    void Update()
     {
         bool shipShootBullets = Input.GetKeyDown(KeyCode.Space);
          if (shipShootBullets)
         {
             Vector3 position = transform.position + transform.up;
             GameObject newBullet = Instantiate(bullet, position, Quaternion.identity);
+
+            Rigidbody2D rigidbody = newBullet.GetComponent<Rigidbody2D>();
+            rigidbody.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
         }
     }
 }
