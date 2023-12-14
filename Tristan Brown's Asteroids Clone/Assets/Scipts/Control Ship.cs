@@ -44,6 +44,7 @@ public class MoveShip : MonoBehaviour
 
     void Update()
     {
+        //Allows Player to shoot bullets
         bool shipShootBullets = Input.GetKeyDown(KeyCode.Space);
          if (shipShootBullets)
         {
