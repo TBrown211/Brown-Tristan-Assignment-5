@@ -17,12 +17,6 @@ public class AstroidBehavour : MonoBehaviour
         asteroidBody.AddForce(giveAsteroidForce, ForceMode2D.Impulse);
         transform.position = new Vector3(astroidX, astroidY, 0);
     }
-
-    void Update()
-    {
-      
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("bullet"))
