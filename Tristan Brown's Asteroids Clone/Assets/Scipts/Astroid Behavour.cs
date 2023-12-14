@@ -17,7 +17,7 @@ public class AstroidBehavour : MonoBehaviour
         asteroidBody.AddForce(giveAsteroidForce, ForceMode2D.Impulse);
         transform.position = new Vector3(astroidX, astroidY, 0);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //Will destory bullets when they hit asteroid. Will also split asteroid.
     {
         if (!collision.gameObject.CompareTag("bullet"))
             return;
@@ -26,7 +26,7 @@ public class AstroidBehavour : MonoBehaviour
         Destroy(collision.gameObject);
     }
 
-    void SplitAsteroid()
+    void SplitAsteroid() //Code that splits the Asteroid
     {
         int maxAsteroidSplitCount = 3;
 
