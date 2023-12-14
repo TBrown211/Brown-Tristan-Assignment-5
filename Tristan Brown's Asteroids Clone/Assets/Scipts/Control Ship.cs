@@ -14,6 +14,13 @@ public class MoveShip : MonoBehaviour
         Debug.Log(name);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("asteroid"))
+            return;
+        Destroy(gameObject);
+    }
+
     void FixedUpdate()
     {
         // Get the players input for controling the ship
@@ -45,6 +52,8 @@ public class MoveShip : MonoBehaviour
 
             Rigidbody2D rigidbody = newBullet.GetComponent<Rigidbody2D>();
             rigidbody.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
+
+            Destroy(newBullet, timeUntillBulletIsDestoryed);
         }
     }
 }
